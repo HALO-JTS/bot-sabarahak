@@ -48,8 +48,10 @@ jobs:
           fi
 
       - name: Jalankan Bot Samapta
-        # Sesuaikan nama file .py di bawah ini jika nama file Anda berbeda (misal: bot.py atau bot_samapta.py)
-        run: python bot.py ${{ steps.pilih_mode.outputs.mode }}
+        run: |
+          FILE_PY=$(ls *.py | head -n 1)
+          echo "Menjalankan file: $FILE_PY (Mode: ${{ steps.pilih_mode.outputs.mode }})"
+          python "$FILE_PY" "${{ steps.pilih_mode.outputs.mode }}"
         env:
           POSKO_EMAIL: ${{ secrets.POSKO_EMAIL }}
           POSKO_PASSWORD: ${{ secrets.POSKO_PASSWORD }}
