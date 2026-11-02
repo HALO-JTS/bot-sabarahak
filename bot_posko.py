@@ -110,7 +110,6 @@ def kirim_notif_telegram(pesan, foto_path=None):
             print(f"Gagal kirim ke Telegram ({cid}):", e)
 
 def tutup_saran_jika_ada(page):
-    """Menutup kotak Saran atau keluhan 1 (tombol ×) agar tidak wajib diisi."""
     try:
         tombol_x = page.locator("button:has-text('×')")
         for i in range(tombol_x.count()):
@@ -122,7 +121,6 @@ def tutup_saran_jika_ada(page):
         pass
 
 def klik_tetap_kirim_jika_ada(page):
-    """Otomatis mengklik tombol 'Tetap kirim' jika muncul konfirmasi laporan serupa."""
     try:
         btn_tetap = page.get_by_role("button", name="Tetap kirim")
         if btn_tetap.count() > 0 and btn_tetap.first.is_visible():
@@ -133,7 +131,6 @@ def klik_tetap_kirim_jika_ada(page):
         pass
 
 def pilih_alasan_dropdown(page, preferensi_teks=""):
-    """Memilih alasan pada dropdown kedua di halaman (Alasan memilih rute / lokasi)."""
     try:
         selects = page.locator("select")
         if selects.count() > 1:
@@ -149,7 +146,6 @@ def pilih_alasan_dropdown(page, preferensi_teks=""):
         print("Info pilih alasan:", e)
 
 def isi_link_foto_drive(page, link_foto):
-    """Mengisi link Google Drive pada kolom Foto kegiatan."""
     inputs_drive = page.locator("input[placeholder*='Google Drive'], input[placeholder*='drive.google.com']")
     for i in range(inputs_drive.count()):
         if inputs_drive.nth(i).is_visible():
@@ -267,12 +263,12 @@ def jalankan_robot(mode):
                     btn_jam.first.click()
                     page.wait_for_timeout(500)
 
-                # k. Jenis kegiatan patroli -> Klik 'Patrol mobile' (Wajib)
-                btn_mobile = page.get_by_role("button", name="Patrol mobile")
+                # k. Jenis kegiatan patroli -> Klik 'Patroli mobile' (Wajib)
+                btn_mobile = page.get_by_role("button", name=re.compile(r"Patroli?\s*mobile", re.I))
                 if btn_mobile.count() > 0:
                     btn_mobile.first.scroll_into_view_if_needed()
                     btn_mobile.first.click()
-                    page.wait_for_timeout(300)
+                    page.wait_for_timeout(500)
 
                 # l. Alat utama patroli -> Klik 'Mobil patroli' (Wajib)
                 btn_mobil = page.get_by_role("button", name="Mobil patroli")
@@ -303,6 +299,8 @@ def jalankan_robot(mode):
                 klik_tetap_kirim_jika_ada(page)
                 page.wait_for_timeout(4000)
 
+                # Arahkan layar ke tombol Kirim laporan agar status terkirim terlihat jelas
+                btn_kirim.scroll_into_view_if_needed()
                 ss_patroli = f"bukti_patroli_{mode}.png"
                 page.screenshot(path=ss_patroli)
                 kirim_notif_telegram(
@@ -349,7 +347,7 @@ def jalankan_robot(mode):
                 # d. Alasan memilih lokasi ini (Wajib)
                 pilih_alasan_dropdown(page)
 
-                # j. Tutup kotak Saran atau keluhan 1 (×) terlebih dahulu agar input angka di dalamnya hilang
+                # j. Tutup kotak Saran atau keluhan 1 (×) terlebih dahulu
                 tutup_saran_jika_ada(page)
 
                 # e & f. Isi semua kotak angka wajib dengan "0"
@@ -377,6 +375,7 @@ def jalankan_robot(mode):
                 klik_tetap_kirim_jika_ada(page)
                 page.wait_for_timeout(4000)
 
+                btn_kirim.scroll_into_view_if_needed()
                 ss_dimtaq = "bukti_dimtaq.png"
                 page.screenshot(path=ss_dimtaq)
                 kirim_notif_telegram(
