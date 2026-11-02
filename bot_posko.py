@@ -42,22 +42,6 @@ DAFTAR_RUTE_MALAM = [
     "MAKO - TUGU BINTANG - BRI - BPD - SPBU - ALAS MBOGO - MAKO",
 ]
 
-ALASAN_RUTE_SIANG = [
-    "Antisipasi gangguan keamanan dan ketertiban masyarakat di sekitar objek vital dan pusat keramaian",
-    "Antisipasi gangguan kamtibmas serta tindak kejahatan C3 pada jam aktif operasional perbankan dan pasar",
-    "Memberikan rasa aman kepada masyarakat yang beraktivitas di pusat perekonomian dan objek vital perbankan",
-    "Mencegah potensi tindak pidana kejahatan jalanan, premanisme, dan gangguan keamanan di wilayah hukum Polsek Jatisrono",
-    "Pemantauan situasi kamtibmas di titik rawan keramaian masyarakat dan objek vital perbankan agar tetap aman kondusif",
-]
-
-ALASAN_RUTE_MALAM = [
-    "Antisipasi gangguan keamanan dan tindak kejahatan C3 (Curat, Curas, Curanmor) pada jam rawan malam hari",
-    "Mencegah potensi gangguan kamtibmas, kejahatan jalanan, serta pemantauan keamanan objek vital dan mesin ATM malam hari",
-    "Patroli kewilayahan guna mengantisipasi kerawanan malam hari dan menjaga situasi kamtibmas tetap aman kondusif",
-    "Antisipasi tindak pidana pencurian, balap liar, dan gangguan keamanan di sekitar objek vital pada malam hari",
-    "Menjaga stabilitas keamanan wilayah hukum Polsek Jatisrono pada jam rawan malam hari",
-]
-
 # ==========================================================
 # 2. VARIASI PAKET LOKASI & KOORDINAT ASLI DIMTAQ (QW1.14)
 # ==========================================================
@@ -65,11 +49,6 @@ PAKET_DIMTAQ = [
     {
         "lokasi": "PASAR JATISRONO",
         "koordinat": "(-7.8273937, 111.1285440)",
-        "pertimbangan": [
-            "Pusat keramaian dan aktivitas ekonomi masyarakat yang rawan terjadi gangguan kamtibmas serta pelanggaran norma",
-            "Antisipasi gangguan keamanan dan ketertiban umum di area pusat perbelanjaan masyarakat",
-            "Lokasi aktivitas warga yang memerlukan pemeliharaan kamtibmas dan pembinaan ketertiban sosial",
-        ],
         "uraian": [
             "Melaksanakan patroli dialogis dan memberikan pembinaan serta imbauan kamtibmas kepada warga maupun pemuda di area Pasar Jatisrono",
             "Melaksanakan patroli rutin serta mengajak masyarakat bersama-sama menjaga keamanan dan ketertiban di lingkungan pasar",
@@ -79,11 +58,6 @@ PAKET_DIMTAQ = [
     {
         "lokasi": "JALAN SEKITAR PASAR JATISRONO",
         "koordinat": "(-7.8274594, 111.1289731)",
-        "pertimbangan": [
-            "Jalur utama aktivitas masyarakat di sekitar pasar yang rawan potensi pelanggaran norma dan gangguan ketertiban umum",
-            "Antisipasi gangguan keamanan, premanisme, serta potensi kerawanan sosial di jalan sekitar Pasar Jatisrono",
-            "Titik keramaian lalu lalang warga dan pemuda yang memerlukan pengawasan serta pembinaan kamtibmas",
-        ],
         "uraian": [
             "Melaksanakan patroli rutin dan memberikan imbauan kamtibmas kepada warga serta pemuda di jalan sekitar Pasar Jatisrono",
             "Melaksanakan kegiatan patroli sambang dan pembinaan norma kepada masyarakat guna menjaga situasi tetap aman dan tertib",
@@ -93,11 +67,6 @@ PAKET_DIMTAQ = [
     {
         "lokasi": "JALAN SEKITAR SPBU JATISRONO",
         "koordinat": "(-7.8296862, 111.1607271)",
-        "pertimbangan": [
-            "Titik rawan berkumpulnya pemuda di jalur sekitar SPBU yang memerlukan pengawasan guna mencegah pelanggaran norma dan gangguan kamtibmas",
-            "Antisipasi gangguan keamanan, ketertiban umum, serta potensi kerawanan remaja di jalan sekitar SPBU Jatisrono",
-            "Lokasi strategis di jalur utama yang kerap menjadi tempat berkumpulnya masyarakat dan remaja sehingga perlu pembinaan kamtibmas",
-        ],
         "uraian": [
             "Melaksanakan patroli rutin serta memberikan pembinaan kepada pemuda yang ditemui di sekitar SPBU Jatisrono agar menjauhi pelanggaran norma",
             "Melaksanakan patroli dialogis dan menyampaikan pesan kamtibmas kepada warga serta remaja di jalan sekitar SPBU Jatisrono",
@@ -107,11 +76,6 @@ PAKET_DIMTAQ = [
     {
         "lokasi": "TUGU BINTANG JATISRONO",
         "koordinat": "(-7.8272791, 111.1287683)",
-        "pertimbangan": [
-            "Titik kumpul masyarakat dan remaja di kawasan Tugu Bintang Jatisrono yang berpotensi menimbulkan kerawanan kamtibmas dan pelanggaran norma",
-            "Antisipasi gangguan keamanan serta pencegahan kenakalan remaja dan pelanggaran ketertiban sosial di area Tugu Bintang Jatisrono",
-            "Kawasan ruang publik yang ramai dikunjungi warga dan pemuda sehingga memerlukan kehadiran Polri untuk pembinaan kamtibmas",
-        ],
         "uraian": [
             "Melaksanakan patroli pembinaan secara humanis kepada warga dan pemuda di kawasan Tugu Bintang Jatisrono guna menjaga ketertiban umum",
             "Melaksanakan patroli dialogis serta memberikan edukasi dan imbauan kamtibmas kepada remaja yang berkumpul di sekitar Tugu Bintang",
@@ -121,11 +85,6 @@ PAKET_DIMTAQ = [
     {
         "lokasi": "ALAS MBOGO JATISRONO",
         "koordinat": "(-7.8549743, 111.0955813)",
-        "pertimbangan": [
-            "Kawasan rawan yang memerlukan pengawasan intensif guna mencegah potensi pelanggaran norma sosial, miras, maupun gangguan kamtibmas",
-            "Antisipasi gangguan keamanan dan penyakit masyarakat di jalur Alas Mbogo Jatisrono agar situasi wilayah tetap aman terkendali",
-            "Lokasi yang berpotensi dimanfaatkan oleh oknum pemuda untuk melakukan aktivitas yang melanggar norma dan ketertiban umum",
-        ],
         "uraian": [
             "Melaksanakan patroli rutin dan razia pembinaan di kawasan Alas Mbogo Jatisrono guna mencegah pelanggaran norma serta gangguan kamtibmas",
             "Melaksanakan pemantauan wilayah dan memberikan pembinaan disiplin kepada masyarakat maupun pemuda yang ditemui di sekitar Alas Mbogo",
@@ -151,35 +110,46 @@ def kirim_notif_telegram(pesan, foto_path=None):
             print(f"Gagal kirim ke Telegram ({cid}):", e)
 
 def tutup_saran_jika_ada(page):
+    """Menutup kotak Saran atau keluhan 1 (tombol ×) agar tidak wajib diisi."""
     try:
         tombol_x = page.locator("button:has-text('×')")
         for i in range(tombol_x.count()):
             if tombol_x.nth(i).is_visible():
+                tombol_x.nth(i).scroll_into_view_if_needed()
                 tombol_x.nth(i).click()
                 page.wait_for_timeout(500)
     except Exception:
         pass
 
-def pilih_alasan_dropdown(page, teks_cadangan):
-    """Memilih alasan pada dropdown 'Pilih' di dalam form laporan (select ke-2 di halaman)."""
+def klik_tetap_kirim_jika_ada(page):
+    """Otomatis mengklik tombol 'Tetap kirim' jika muncul konfirmasi laporan serupa."""
+    try:
+        btn_tetap = page.get_by_role("button", name="Tetap kirim")
+        if btn_tetap.count() > 0 and btn_tetap.first.is_visible():
+            btn_tetap.first.scroll_into_view_if_needed()
+            btn_tetap.first.click()
+            page.wait_for_timeout(3000)
+    except Exception:
+        pass
+
+def pilih_alasan_dropdown(page, preferensi_teks=""):
+    """Memilih alasan pada dropdown kedua di halaman (Alasan memilih rute / lokasi)."""
     try:
         selects = page.locator("select")
         if selects.count() > 1:
-            dropdown_alasan = selects.nth(1)
-            dropdown_alasan.scroll_into_view_if_needed()
-            # Pilih opsi pertama yang valid (indeks 1, setelah 'Pilih')
-            dropdown_alasan.select_option(index=1)
+            dropdown = selects.nth(1)
+            dropdown.scroll_into_view_if_needed()
+            if preferensi_teks and dropdown.locator("option", has_text=preferensi_teks).count() > 0:
+                teks_opsi = dropdown.locator("option", has_text=preferensi_teks).first.text_content().strip()
+                dropdown.select_option(label=teks_opsi)
+            else:
+                dropdown.select_option(index=1)
             page.wait_for_timeout(800)
-        # Jika muncul kotak isian alasan tambahan, isi juga
-        inp_alasan = page.locator("input[placeholder*='alasan'], textarea[placeholder*='alasan'], textarea[placeholder*='Alasan']")
-        for i in range(inp_alasan.count()):
-            if inp_alasan.nth(i).is_visible():
-                inp_alasan.nth(i).fill(teks_cadangan)
     except Exception as e:
         print("Info pilih alasan:", e)
 
 def isi_link_foto_drive(page, link_foto):
-    """Mengisi link Google Drive pada kolom Foto Kegiatan versi baru maupun lama."""
+    """Mengisi link Google Drive pada kolom Foto kegiatan."""
     inputs_drive = page.locator("input[placeholder*='Google Drive'], input[placeholder*='drive.google.com']")
     for i in range(inputs_drive.count()):
         if inputs_drive.nth(i).is_visible():
@@ -228,7 +198,7 @@ def ambil_satu_foto_dari_folder(page, kategori):
     return folder_url, 1, 1
 
 def jalankan_robot(mode):
-    kirim_notif_telegram(f"🤖 Robot Posko PBM mulai berjalan otomatis (Mode: {mode.upper()})...")
+    kirim_notif_telegram(f"🤖 Robot Samapta Posko PBM mulai berjalan (Mode: {mode.upper()})...")
 
     with sync_playwright() as p:
         browser = p.chromium.launch(
@@ -257,7 +227,7 @@ def jalankan_robot(mode):
                 page.get_by_role("button", name="Masuk").click()
                 page.wait_for_timeout(5000)
 
-            # 2. Isi Identitas & Pilih Jabatan Samapta
+            # 2. Isi Identitas & Pilih Jabatan Dirsamapta / Kasat Samapta (2 kegiatan)
             page.get_by_label("Nama dan pangkat pelapor").fill("BRIPKA ABU ZAKARIYA, S.H")
             select_jabatan = page.locator("select").first
             opsi_samapta = select_jabatan.locator("option", has_text="Samapta").first
@@ -266,14 +236,13 @@ def jalankan_robot(mode):
             page.wait_for_timeout(2500)
 
             # ==========================================================
-            # 3. EKSEKUSI PATROLI SABHARA (QW1.10 - SIANG / MALAM)
+            # 3. EKSEKUSI PATROLI SABHARA (QW1.10 - PAGI 08.00 / MALAM 20.00)
             # ==========================================================
             if mode in ["siang", "malam"]:
                 link_patroli = link_siang if mode == "siang" else link_malam
                 no_foto = urut_siang if mode == "siang" else urut_malam
                 tot_foto = total_siang if mode == "siang" else total_malam
                 rute_pilihan = random.choice(DAFTAR_RUTE_SIANG if mode == "siang" else DAFTAR_RUTE_MALAM)
-                alasan_pilihan = random.choice(ALASAN_RUTE_SIANG if mode == "siang" else ALASAN_RUTE_MALAM)
 
                 # Buka form QW1.10 Patroli Sabhara
                 if page.get_by_role("button", name="Isi laporan").count() > 0:
@@ -282,69 +251,62 @@ def jalankan_robot(mode):
                     page.get_by_text("Patroli Sabhara").last.click()
                 page.wait_for_timeout(2500)
 
-                # c. Rute patroli dan titik rawan yang dilalui
-                inp_rute = page.locator("input[placeholder*='Jalan, kecamatan'], input[placeholder*='Rute']")
+                # c. Rute patroli dan titik rawan yang dilalui (Wajib)
+                inp_rute = page.locator("input[placeholder*='Jalan, kecamatan']")
                 if inp_rute.count() > 0:
                     inp_rute.first.scroll_into_view_if_needed()
                     inp_rute.first.fill(rute_pilihan)
 
-                # d. Alasan memilih rute ini (Dropdown)
-                pilih_alasan_dropdown(page, alasan_pilihan)
+                # d. Alasan memilih rute ini -> Pilih 'Jalur rutin patroli' (Wajib)
+                pilih_alasan_dropdown(page, "Jalur rutin patroli")
 
-                # f. Jam pelaksanaan kegiatan -> Klik tombol 'Isi jam sekarang'
+                # f. Jam pelaksanaan kegiatan -> Klik 'Isi jam sekarang' (Wajib)
                 btn_jam = page.get_by_role("button", name="Isi jam sekarang")
                 if btn_jam.count() > 0:
                     btn_jam.first.scroll_into_view_if_needed()
                     btn_jam.first.click()
                     page.wait_for_timeout(500)
 
-                # i / j. Cara bertindak & Jenis kegiatan patroli
-                try:
-                    btn_dialogis = page.get_by_role("button", name="Patroli dialogis")
-                    if btn_dialogis.count() > 0:
-                        btn_dialogis.first.scroll_into_view_if_needed()
-                        btn_dialogis.first.click()
-                except Exception:
-                    pass
+                # k. Jenis kegiatan patroli -> Klik 'Patrol mobile' (Wajib)
+                btn_mobile = page.get_by_role("button", name="Patrol mobile")
+                if btn_mobile.count() > 0:
+                    btn_mobile.first.scroll_into_view_if_needed()
+                    btn_mobile.first.click()
+                    page.wait_for_timeout(300)
 
-                try:
-                    # Klik tombol pilihan pertama pada bagian 'Jenis kegiatan patroli'
-                    btn_jenis = page.locator("xpath=//*[contains(text(), 'Jenis kegiatan patroli')]/following::button[1]")
-                    if btn_jenis.count() > 0:
-                        btn_jenis.first.scroll_into_view_if_needed()
-                        btn_jenis.first.click()
-                except Exception:
-                    pass
-
-                # l. Alat utama patroli -> Klik 'Mobil patroli'
+                # l. Alat utama patroli -> Klik 'Mobil patroli' (Wajib)
                 btn_mobil = page.get_by_role("button", name="Mobil patroli")
                 if btn_mobil.count() > 0:
                     btn_mobil.first.scroll_into_view_if_needed()
                     btn_mobil.first.click()
+                    page.wait_for_timeout(300)
 
-                # m. Ada target penindakan atau temuan pada patroli ini? -> Klik 'Tidak ada'
+                # m. Ada target penindakan atau temuan pada patroli ini? -> Klik 'Tidak ada' (Wajib)
                 btn_tidak_ada = page.get_by_role("button", name="Tidak ada", exact=True)
                 if btn_tidak_ada.count() > 0:
                     btn_tidak_ada.first.scroll_into_view_if_needed()
                     btn_tidak_ada.first.click()
                     page.wait_for_timeout(500)
 
-                # o. Tutup kotak saran/keluhan (×)
+                # o. Tutup kotak Saran atau keluhan 1 (×)
                 tutup_saran_jika_ada(page)
 
-                # p. Foto kegiatan (Link Google Drive)
+                # p. Foto kegiatan (Wajib)
                 isi_link_foto_drive(page, link_patroli)
 
                 page.wait_for_timeout(1000)
                 btn_kirim = page.get_by_role("button", name="Kirim laporan")
                 btn_kirim.scroll_into_view_if_needed()
                 btn_kirim.click()
+                page.wait_for_timeout(2000)
+
+                klik_tetap_kirim_jika_ada(page)
                 page.wait_for_timeout(4000)
 
                 ss_patroli = f"bukti_patroli_{mode}.png"
                 page.screenshot(path=ss_patroli)
                 kirim_notif_telegram(
-                    f"✅ Laporan PATROLI {mode.upper()} berhasil dikirim!\n\n"
+                    f"✅ Laporan PATROLI {mode.upper()} (QW1.10) berhasil dikirim!\n\n"
                     f"📸 Foto ke-{no_foto} dari {tot_foto} di Folder\n"
                     f"🛣️ Rute: {rute_pilihan}\n"
                     f"🔗 Link Foto: {link_patroli}",
@@ -352,21 +314,21 @@ def jalankan_robot(mode):
                 )
 
             # ==========================================================
-            # 4. EKSEKUSI DIMTAQ EKSTERNAL (QW1.14)
+            # 4. EKSEKUSI DIMTAQ EKSTERNAL (QW1.14 - PAGI 08.00)
             # ==========================================================
             if mode in ["siang", "dimtaq"]:
                 paket = random.choice(PAKET_DIMTAQ)
-                pertimbangan_dimtaq = random.choice(paket["pertimbangan"])
                 uraian_dimtaq = random.choice(paket["uraian"])
 
                 # Buka form QW1.14 DIMTAQ
-                if page.get_by_role("button", name="Isi laporan").count() > 1:
+                if page.get_by_text("QW1.14").count() > 0:
+                    page.get_by_text("QW1.14").last.scroll_into_view_if_needed()
+                    page.get_by_text("QW1.14").last.click()
+                elif page.get_by_role("button", name="Isi laporan").count() > 1:
                     page.get_by_role("button", name="Isi laporan").nth(1).click()
-                else:
-                    page.get_by_text("DIMTAQ").last.click()
                 page.wait_for_timeout(2500)
 
-                # b. Lokasi DIMTAQ (Nama tempat & Koordinat)
+                # b. Lokasi DIMTAQ: Nama tempat & Koordinat (Wajib)
                 inp_tempat = page.locator("input[placeholder*='Nama tempat']")
                 if inp_tempat.count() > 0:
                     inp_tempat.first.scroll_into_view_if_needed()
@@ -377,44 +339,48 @@ def jalankan_robot(mode):
                     inp_koord.first.scroll_into_view_if_needed()
                     inp_koord.first.fill(paket["koordinat"])
 
-                # c. Jam pelaksanaan kegiatan -> Klik 'Isi jam sekarang'
+                # c. Jam pelaksanaan kegiatan -> Klik 'Isi jam sekarang' (Wajib)
                 btn_jam = page.get_by_role("button", name="Isi jam sekarang")
                 if btn_jam.count() > 0:
                     btn_jam.first.scroll_into_view_if_needed()
                     btn_jam.first.click()
                     page.wait_for_timeout(500)
 
-                # d. Alasan memilih lokasi ini (Dropdown)
-                pilih_alasan_dropdown(page, pertimbangan_dimtaq)
+                # d. Alasan memilih lokasi ini (Wajib)
+                pilih_alasan_dropdown(page)
 
-                # e & f. Jumlah masyarakat terjaring & Jumlah pemuda yang dibina
+                # j. Tutup kotak Saran atau keluhan 1 (×) terlebih dahulu agar input angka di dalamnya hilang
+                tutup_saran_jika_ada(page)
+
+                # e & f. Isi semua kotak angka wajib dengan "0"
                 num_inputs = page.locator("input[type='number']")
                 for i in range(num_inputs.count()):
                     if num_inputs.nth(i).is_visible():
+                        num_inputs.nth(i).scroll_into_view_if_needed()
                         num_inputs.nth(i).fill("0")
 
-                # h. Uraian pelaksanaan kegiatan
-                uraian_el = page.locator("textarea[placeholder*='Contoh:'], xpath=//*[contains(text(), 'Uraian pelaksanaan kegiatan')]/following::textarea[1]")
-                if uraian_el.count() > 0:
-                    uraian_el.first.scroll_into_view_if_needed()
-                    uraian_el.first.fill(uraian_dimtaq)
+                # h. Uraian pelaksanaan kegiatan (Wajib)
+                inp_uraian = page.locator("textarea[placeholder*='Contoh: razia']")
+                if inp_uraian.count() > 0:
+                    inp_uraian.first.scroll_into_view_if_needed()
+                    inp_uraian.first.fill(uraian_dimtaq)
 
-                # j. Tutup kotak saran/keluhan (×)
-                tutup_saran_jika_ada(page)
-
-                # k. Foto kegiatan (Link Google Drive)
+                # k. Foto kegiatan (Wajib)
                 isi_link_foto_drive(page, link_dimtaq)
 
                 page.wait_for_timeout(1000)
                 btn_kirim = page.get_by_role("button", name="Kirim laporan")
                 btn_kirim.scroll_into_view_if_needed()
                 btn_kirim.click()
+                page.wait_for_timeout(2000)
+
+                klik_tetap_kirim_jika_ada(page)
                 page.wait_for_timeout(4000)
 
                 ss_dimtaq = "bukti_dimtaq.png"
                 page.screenshot(path=ss_dimtaq)
                 kirim_notif_telegram(
-                    f"✅ Laporan DIMTAQ EKSTERNAL berhasil dikirim!\n\n"
+                    f"✅ Laporan DIMTAQ EKSTERNAL (QW1.14) berhasil dikirim!\n\n"
                     f"📸 Foto ke-{urut_dimtaq} dari {total_dimtaq} di Folder\n"
                     f"📍 Lokasi: {paket['lokasi']} {paket['koordinat']}\n"
                     f"📝 Uraian: {uraian_dimtaq}\n"
@@ -425,7 +391,7 @@ def jalankan_robot(mode):
         except Exception as e:
             err_ss = "error.png"
             try:
-                page.screenshot(path=err_ss, full_page=True)
+                page.screenshot(path=err_ss)
                 kirim_notif_telegram(f"⚠️ Gagal mengirim laporan ({mode}):\n{str(e)}", err_ss)
             except Exception:
                 kirim_notif_telegram(f"⚠️ Gagal membuka web ({mode}):\n{str(e)}")
