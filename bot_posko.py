@@ -139,52 +139,61 @@ PAKET_DIMTAQ = [
 def kirim_notif_telegram(pesan, foto_path=None):
     if not TG_TOKEN or not TG_CHAT_ID:
         return
+    daftar_chat_id = [cid.strip() for cid in TG_CHAT_ID.split(",") if cid.strip()]
+    for cid in daftar_chat_id:
+        try:
+            if foto_path and os.path.exists(foto_path):
+                url = f"https://api.telegram.org/bot{TG_TOKEN}/sendPhoto"
+                with open(foto_path, "rb") as f:
+                    requests.post(url, data={"chat_id": cid, "caption": pesan[:1000]}, files={"photo": f}, timeout=20)
+            else:
+                url = f"https://api.telegram.org/bot{TG_TOKEN}/sendMessage"
+                requests.post(url, data={"chat_id": cid, "text": pesan[:4000]}, timeout=20)
+        except Exception as e:
+            print(f"Gagal kirim ke Telegram ({cid}):", e)
+
+def tutup_saran_jika_ada(page):
     try:
-        if foto_path and os.path.exists(foto_path):
-            url = f"https://api.telegram.org/bot{TG_TOKEN}/sendPhoto"
-            with open(foto_path, "rb") as f:
-                requests.post(url, data={"chat_id": TG_CHAT_ID, "caption": pesan[:1000]}, files={"photo": f}, timeout=20)
-        else:
-            url = f"https://api.telegram.org/bot{TG_TOKEN}/sendMessage"
-            requests.post(url, data={"chat_id": TG_CHAT_ID, "text": pesan[:4000]}, timeout=20)
-    except Exception as e:
-        print("Gagal kirim ke Telegram:", e)
+        tombol_x = page.locator("button:has-text('×')")
+        for i in range(tombol_x.count()):
+            if tombol_x.nth(i).is_visible():
+                tombol_x.nth(i).click()
+                page.wait_for_timeout(500)
+    except Exception:
+        pass
 
 def ambil_satu_foto_dari_folder(page, kategori):
     """Membuka folder Google Drive, mendeteksi semua file foto di dalamnya,
     dan memilih 1 link foto sesuai urutan hari (Hari 1 s/d 7, lalu kembali ke 1)."""
     folder_url = FOLDER_URLS[kategori]
-    folder_id = folder_url.rstrip("/").split("/")[-1].split("?")[0]
-    embed_url = f"https://drive.google.com/embeddedfolderview?id={folder_id}#list"
+    kode_utama = folder_url.rstrip("/").split("/")[-1].split("?")[0]
+    embed_url = f"https://drive.google.com/embeddedfolderview?id={kode_utama}#list"
 
-    # Hitung urutan hari berdasarkan Waktu Indonesia Barat (WIB / UTC+7)
     wib_now = datetime.now(timezone(timedelta(hours=7)))
-    indeks_hari = wib_now.weekday()  # Senin=0 (Foto 1) ... Minggu=6 (Foto 7)
+    indeks_hari = wib_now.weekday()
 
     file_links = []
     try:
-        # Cara 1: Ambil dari tampilan daftar publik Google Drive
         res = requests.get(embed_url, timeout=20)
         ids = re.findall(r"/file/d/([a-zA-Z0-9_-]{25,})/", res.text)
         if not ids:
             ids = re.findall(r'id="entry-([a-zA-Z0-9_-]{25,})"', res.text)
-        
-        seen = set()
-        for fid in ids:
-            if fid != folder_id and fid not in seen:
-                seen.add(fid)
-                file_links.append(f"https://drive.google.com/file/d/{fid}/view?usp=drivesdk")
 
-        # Cara 2 (Cadangan): Jika perlu render lewat browser Playwright
+        seen = set()
+        for item_id in ids:
+            if item_id != kode_utama and item_id not in seen:
+                seen.add(item_id)
+                file_links.append(f"https://drive.google.com/file/d/{item_id}/view?usp=drivesdk")
+
         if not file_links:
             page.goto(folder_url, timeout=60000, wait_until="domcontentloaded")
             page.wait_for_timeout(4000)
             html = page.content()
             ids2 = re.findall(r'data-id="([a-zA-Z0-9_-]{25,})"', html)
-            for fid in ids2:
-                if fid != folder_id and fid not in seen:
-                    seen.add(fid)
-                    file_links.append(f"https://drive.google.com/file/d/{fid}/view?usp=drivesdk")
+            for item_id in ids2:
+                if item_id != kode_utama and item_id not in seen:
+                    seen.add(item_id)
+                    file_links.append(f"https://drive.google.com/file/d/{item_id}/view?usp=drivesdk")
     except Exception as e:
         print(f"Gagal memindai folder {kategori}:", e)
 
@@ -194,12 +203,11 @@ def ambil_satu_foto_dari_folder(page, kategori):
         print(f"[{kategori.upper()}] Ditemukan {len(file_links)} foto. Hari ke-{indeks_hari + 1} -> Pakai Foto #{idx_terpilih + 1}")
         return link_terpilih, idx_terpilih + 1, len(file_links)
 
-    # Jika folder kosong, gunakan link foldernya
     return folder_url, 1, 1
 
 def jalankan_robot(mode):
     kirim_notif_telegram(f"🤖 Robot Posko PBM mulai berjalan otomatis (Mode: {mode.upper()})...")
-    
+
     with sync_playwright() as p:
         browser = p.chromium.launch(
             headless=True,
@@ -213,7 +221,6 @@ def jalankan_robot(mode):
         page = context.new_page()
 
         try:
-            # Pilih dulu 1 link foto dari dalam masing-masing folder sesuai giliran hari
             link_siang, urut_siang, total_siang = ambil_satu_foto_dari_folder(page, "siang") if mode == "siang" else ("", 0, 0)
             link_malam, urut_malam, total_malam = ambil_satu_foto_dari_folder(page, "malam") if mode == "malam" else ("", 0, 0)
             link_dimtaq, urut_dimtaq, total_dimtaq = ambil_satu_foto_dari_folder(page, "dimtaq") if mode in ["siang", "dimtaq"] else ("", 0, 0)
@@ -228,31 +235,40 @@ def jalankan_robot(mode):
                 page.get_by_role("button", name="Masuk").click()
                 page.wait_for_timeout(5000)
 
-            # 2. Isi Identitas & Pilih Jabatan Kanit Samapta
+            # 2. Isi Identitas & Pilih Jabatan Kanit Samapta (Otomatis mendeteksi teks opsi "Samapta")
             page.get_by_label("Nama dan pangkat pelapor").fill("BRIPKA ABU ZAKARIYA, SH")
-            page.locator("select").first.select_option(label="Kanit Samapta (3 kegiatan)")
-            page.wait_for_timeout(2000)
+            select_jabatan = page.locator("select").first
+            opsi_samapta = select_jabatan.locator("option", has_text="Samapta").first
+            teks_jabatan = (opsi_samapta.text_content() or "").strip()
+            select_jabatan.select_option(label=teks_jabatan)
+            page.wait_for_timeout(2500)
 
-            # 3. EKSEKUSI PATROLI SABHARA (SIANG / MALAM)
+            # 3. EKSEKUSI PATROLI SABHARA (QW1.10 - SIANG / MALAM)
             if mode in ["siang", "malam"]:
                 link_patroli = link_siang if mode == "siang" else link_malam
                 no_foto = urut_siang if mode == "siang" else urut_malam
                 tot_foto = total_siang if mode == "siang" else total_malam
                 rute_pilihan = random.choice(DAFTAR_RUTE_SIANG if mode == "siang" else DAFTAR_RUTE_MALAM)
                 alasan_pilihan = random.choice(ALASAN_RUTE_SIANG if mode == "siang" else ALASAN_RUTE_MALAM)
-                
-                page.get_by_role("button", name="Isi laporan").nth(0).click()
+
+                # Klik dari daftar kegiatan atau tombol Isi laporan pertama
+                if page.get_by_text("QW1.10").count() > 0:
+                    page.get_by_text("QW1.10").last.scroll_into_view_if_needed()
+                    page.get_by_text("QW1.10").last.click()
+                else:
+                    page.get_by_role("button", name="Isi laporan").nth(0).click()
                 page.wait_for_timeout(2500)
 
                 page.get_by_label("Nama dan pangkat pejabat pelaksana").fill("BRIPKA ABU ZAKARIYA,S.H.")
                 page.get_by_label("Rute patroli").fill(rute_pilihan)
                 page.get_by_placeholder("Alasan rute dipilih").fill(alasan_pilihan)
-                page.locator("input[placeholder*='drive.google.com']").fill(link_patroli)
+                tutup_saran_jika_ada(page)
+                page.locator("input[placeholder*='drive.google.com']").first.fill(link_patroli)
 
                 page.wait_for_timeout(1000)
                 page.get_by_role("button", name="Kirim laporan").click()
                 page.wait_for_timeout(4000)
-                
+
                 ss_patroli = f"bukti_patroli_{mode}.png"
                 page.screenshot(path=ss_patroli)
                 kirim_notif_telegram(
@@ -269,12 +285,17 @@ def jalankan_robot(mode):
                 paket = random.choice(PAKET_DIMTAQ)
                 pertimbangan_dimtaq = random.choice(paket["pertimbangan"])
                 uraian_dimtaq = random.choice(paket["uraian"])
-                
-                page.get_by_role("button", name="Isi laporan").nth(1).click()
+
+                # Klik langsung kegiatan QW1.14 / DIMTAQ agar tidak salah tombol
+                if page.get_by_text("QW1.14").count() > 0:
+                    page.get_by_text("QW1.14").last.scroll_into_view_if_needed()
+                    page.get_by_text("QW1.14").last.click()
+                else:
+                    page.get_by_role("button", name="Isi laporan").nth(1).click()
                 page.wait_for_timeout(2500)
 
                 page.get_by_label("Nama dan pangkat pejabat pelaksana").fill("BRIPKA ABU ZAKARIYA, S.H.")
-                
+
                 input_lokasi = page.locator("xpath=//*[contains(text(), 'Nama lokasi DIMTAQ')]/following::input")
                 input_lokasi.nth(0).fill(paket["lokasi"])
                 input_lokasi.nth(1).fill(paket["koordinat"])
@@ -287,7 +308,8 @@ def jalankan_robot(mode):
                     num_inputs.nth(1).fill("1")
 
                 page.locator("xpath=//*[contains(text(), 'Uraian pelaksanaan kegiatan')]/following::textarea[1]").fill(uraian_dimtaq)
-                page.locator("input[placeholder*='drive.google.com']").fill(link_dimtaq)
+                tutup_saran_jika_ada(page)
+                page.locator("input[placeholder*='drive.google.com']").first.fill(link_dimtaq)
 
                 page.wait_for_timeout(1000)
                 page.get_by_role("button", name="Kirim laporan").click()
